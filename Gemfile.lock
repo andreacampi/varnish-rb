@@ -1,0 +1,13 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    eventmachine (0.12.10-java)
+    newrelic_rpm (3.1.0)
+
+PLATFORMS
+  java
+  ruby
+
+DEPENDENCIES
+  eventmachine
+  newrelic_rpm
