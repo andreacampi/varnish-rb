@@ -1,5 +1,6 @@
 source :rubygems
-gemspec
+
+gem 'ffi'
 
 group :development do
   gem "bundler", "~> 1.0.0"
