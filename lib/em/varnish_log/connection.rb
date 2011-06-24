@@ -4,12 +4,15 @@ require 'varnish'
 module EM
   module VarnishLog
     #
-    # A naive subclass of EM::Connection that reads from the Varnish log SHM
-    # and pushes single log entries on the channel passed to its constructor.
+    # A subclass of EM::Connection that reads from the Varnish log SHM and
+    # pushes single log entries on the channel passed to its constructor.
     #
-    # This class is only provided as a simple example of how to use the
-    # Varnish::VSL API; its performance is abysmal so it's only suitable for
-    # extremely low workloads in a development environment.
+    # Note that simply using an EM::Channel pretty much guarantees awful
+    # performance, suitable only for extremely low workloads in a development
+    # environment. The provided EM::BufferedChannel improves things quite a
+    # bit: it has proved able to push about 150k entries per second
+    # (corresponding to about 4k HTTP req/s), using a full CPU on a modern
+    # MBP.
     #
     class Connection < EM::Connection
       class << self
