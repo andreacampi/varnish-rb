@@ -1,7 +1,6 @@
 require 'eventmachine'
-require 'varnish/utils'
 
-module EventMachine
+module EM
   #
   # A subclass of EM::Channel that implements double buffering (using a
   # circular array of arrays) to achieve higher packet rate.
@@ -12,12 +11,57 @@ module EventMachine
   class BufferedChannel < EM::Channel
     def initialize
       super
-      @buffer = Varnish::Utils::BufferSet.new(2000, 200)
+      @buffer = BufferSet.new(2000, 200)
     end
 
     def push(*items)
       @buffer.push(*items) do |buf|
-        super
+        EM.schedule do
+          @subs.values.each do |s|
+            begin
+              buf.each do |i|
+                s.call i
+              end
+            ensure
+              buf.clear
+            end
+          end
+        end
+      end
+    end
+
+    class BufferSet
+      def initialize(size, nbufs)
+        @size = size
+        @nbufs = nbufs
+
+        @buffers = []
+
+        setup
+      end
+
+      def push(data)
+        raise "WTF #{@buffers.length}" unless @buffers.length == @nbufs
+
+        if @buffers[0].length > @size
+          if @buffers[1].length > 0
+            raise "panic! the next buffer is still full!"
+          end
+
+          buf = @buffers.shift
+          @buffers << buf
+
+          yield buf
+        end
+
+        @buffers.first << data
+      end
+
+    private
+      def setup
+        (0..@nbufs-1).each do |n|
+          @buffers[n] = []
+        end
       end
     end
   end
