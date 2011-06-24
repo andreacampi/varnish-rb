@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{varnish-rb}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrea Campi"]
@@ -14,24 +14,29 @@ Gem::Specification.new do |s|
   s.email = %q{andrea.campi@zephirworks.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".rvmrc",
     "Gemfile",
     "Gemfile.lock",
+    "LICENSE.txt",
+    "README.md",
+    "Rakefile",
     "VERSION",
-    "lib/em/varnish/log_connection.rb",
-    "lib/em/varnish/log_stream.rb",
-    "lib/em/varnish/request_stream.rb",
+    "examples/log.rb",
+    "examples/log_tail.rb",
+    "examples/request_stream.rb",
+    "examples/request_tail.rb",
+    "lib/em/buffered_channel.rb",
+    "lib/em/varnish_log/connection.rb",
     "lib/varnish.rb",
-    "lib/varnish/connection.rb",
-    "lib/varnish/log_entry.rb",
+    "lib/varnish/utils.rb",
+    "lib/varnish/utils/timer.rb",
     "lib/varnish/vsl.rb",
+    "lib/varnish/vsl/enum.rb",
     "lib/varnish/vsm.rb",
-    "log.rb",
-    "log_tailer.rb",
-    "tailer.rb"
+    "varnish-rb.gemspec"
   ]
   s.homepage = %q{http://github.com/andreacampi/varnish-rb}
   s.licenses = ["MIT"]
@@ -43,18 +48,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<varnish-rb>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.2"])
-      s.add_runtime_dependency(%q<eventmachine>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.6.2"])
     else
+      s.add_dependency(%q<varnish-rb>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
-      s.add_dependency(%q<eventmachine>, [">= 0"])
+      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
     end
   else
+    s.add_dependency(%q<varnish-rb>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
-    s.add_dependency(%q<eventmachine>, [">= 0"])
+    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
   end
 end
 
