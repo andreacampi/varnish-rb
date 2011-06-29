@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "varnish-rb"
   gem.homepage = "http://github.com/andreacampi/varnish-rb"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A bridge between Ruby and Varnish 3}
+  gem.description = %Q{varnish-rb provides a bridge between Ruby and [Varnish 3](http://varnish-cache.org/)}
   gem.email = "andrea.campi@zephirworks.com"
   gem.authors = ["Andrea Campi"]
 end
