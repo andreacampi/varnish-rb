@@ -7,7 +7,8 @@ EM.run do
   t = nil
 
   channel = EM::BufferedChannel.new
-  stream = EM::VarnishLog::Connection.start(channel)
+  stream = EM::VarnishLog::Connection.new(channel)
+  stream.run
 
   channel.subscribe do |msg|
     t = Time.now if count == 0

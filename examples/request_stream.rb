@@ -16,7 +16,7 @@ class RequestStream
 private
 
   def listen
-    EM::VarnishLog::Connection.start(@channel)
+    EM::VarnishLog::Connection.new(@channel).run
 
     @channel.subscribe do |msg|
       if msg[:tag] == :reqend

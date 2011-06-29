@@ -14,7 +14,7 @@ module EM
     # (corresponding to about 4k HTTP req/s), using a full CPU on a modern
     # MBP.
     #
-    class Connection < EM::Connection
+    class Connection
       class << self
         attr_reader :channel
 
@@ -25,7 +25,11 @@ module EM
         end
       end
 
-      def post_init
+      def initialize(channel)
+        @channel = channel
+      end
+
+      def run
         vd = Varnish::VSM.VSM_New
         Varnish::VSL.VSL_Setup(vd)
         Varnish::VSL.VSL_Open(vd, 1)
@@ -48,7 +52,7 @@ module EM
     private
       def cb(priv, tag, fd, len, spec, ptr, bitmap)
         str = ptr.read_string(len)
-        self.class.channel.push(:tag => tag, :fd => fd, :data => str, :spec => spec, :bitmap => bitmap)
+        @channel.push(:tag => tag, :fd => fd, :data => str, :spec => spec, :bitmap => bitmap)
       rescue => e
         puts "exception in cb: #{e.inspect}"
       end
