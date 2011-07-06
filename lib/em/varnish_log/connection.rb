@@ -17,12 +17,6 @@ module EM
     class Connection
       class << self
         attr_reader :channel
-
-        def start(channel)
-          @channel = channel
-
-          EM.connect('localhost', 12345, self)
-        end
       end
 
       def initialize(channel)
