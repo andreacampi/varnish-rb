@@ -23,6 +23,7 @@ private
       puts "received #{@count} messages in #{(Time.now - @t).to_s} seconds"
       @t = Time.now
     end
+    return 0
   end
 end
 
