@@ -47,6 +47,7 @@ module EM
       def cb(priv, tag, fd, len, spec, ptr, bitmap)
         str = ptr.read_string(len)
         @channel.push(:tag => tag, :fd => fd, :data => str, :spec => spec, :bitmap => bitmap)
+        0 # ok
       rescue => e
         puts "exception in cb: #{e.inspect}"
       end
