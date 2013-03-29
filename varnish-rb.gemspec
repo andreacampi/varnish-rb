@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "varnish-rb"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrea Campi"]
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/andreacampi/varnish-rb"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "1.8.25"
   s.summary = "A bridge between Ruby and Varnish 3"
 
   if s.respond_to? :specification_version then
