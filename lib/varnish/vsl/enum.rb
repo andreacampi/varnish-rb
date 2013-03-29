@@ -70,6 +70,12 @@ module Varnish
 
         :gzip
       )
+
+      VslSpec = enum(
+        :spec_unknown,
+        :spec_client,
+        :spec_backend
+      )
     end
   end
 end
