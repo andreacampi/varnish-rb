@@ -7,5 +7,6 @@ module Varnish
     ffi_lib Varnish::LIBVARNISHAPI
 
     attach_function 'VSM_New', [], :pointer
+    attach_function 'VSM_n_Arg', [:pointer, :string], :int
   end
 end

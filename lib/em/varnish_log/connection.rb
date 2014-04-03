@@ -23,9 +23,12 @@ module EM
         @channel = channel
       end
 
-      def run
+      def run(options = {})
         vd = Varnish::VSM.VSM_New
         Varnish::VSL.VSL_Setup(vd)
+        if Varnish::VSM.VSM_n_Arg(vd, options[:instance]) != 1
+            raise 'instance inconnu'
+        end
         Varnish::VSL.VSL_Open(vd, 1)
 
         callback = Proc.new { |*args| cb(*args) }
