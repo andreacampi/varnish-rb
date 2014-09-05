@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "varnish-rb"
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrea Campi"]
-  s.date = "2013-03-29"
+  s.date = "2014-09-01"
   s.description = "varnish-rb provides a bridge between Ruby and [Varnish 3](http://varnish-cache.org/)"
   s.email = "andrea.campi@zephirworks.com"
   s.extra_rdoc_files = [
@@ -30,8 +30,6 @@ Gem::Specification.new do |s|
     "lib/em/buffered_channel.rb",
     "lib/em/varnish_log/connection.rb",
     "lib/varnish.rb",
-    "lib/varnish/utils.rb",
-    "lib/varnish/utils/timer.rb",
     "lib/varnish/vsl.rb",
     "lib/varnish/vsl/enum.rb",
     "lib/varnish/vsm.rb",
@@ -40,7 +38,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/andreacampi/varnish-rb"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.25"
+  s.rubygems_version = "1.8.23"
   s.summary = "A bridge between Ruby and Varnish 3"
 
   if s.respond_to? :specification_version then
